@@ -1,8 +1,9 @@
-import Script from 'next/script'
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { Quicksand } from "next/font/google";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { Providers } from "./providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -57,7 +58,7 @@ export default function RootLayout({ children }) {
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-TP62PPZK');
-            `
+            `,
           }}
         />
       </head>
@@ -68,14 +69,14 @@ export default function RootLayout({ children }) {
           antialiased`}
       >
         <noscript>
-          <iframe 
+          <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-TP62PPZK"
-            height="0" 
-            width="0" 
-            style={{ display: 'none', visibility: 'hidden' }}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
