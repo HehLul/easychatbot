@@ -63,38 +63,35 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }) {
   };
 
   return (
-    <div className="p-8">
-      <div className="text-center mb-6">
+    <div className="p-6">
+      <div className="text-center mb-2">
         <div className="flex justify-center">
           <Image
             src="/sheep-logo.png"
             alt="DeepSheep Logo"
-            width={120}
-            height={40}
+            width={100}
+            height={33}
             className="mx-auto"
           />
         </div>
-        <h2 className="mt-4 text-2xl font-bold text-gray-900">
+        <h2 className="mt-3 text-xl font-bold text-gray-900">
           Create your account
         </h2>
-        <p className="mt-2 text-sm text-gray-600">
-          Already have an account?{" "}
-          <button
-            onClick={onSwitchToLogin}
-            className="font-medium text-blue-600 hover:text-blue-500"
-          >
-            Sign in
-          </button>
-        </p>
       </div>
 
+      {/* Concise value proposition */}
+      <p className="text-sm text-center text-gray-600 mb-4">
+        Create a free account to save your chatbot, track performance, and make
+        updates anytime from any device.
+      </p>
+
       {error && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md text-sm">
+        <div className="mb-4 p-2 bg-red-50 text-red-700 rounded-md text-sm">
           {error}
         </div>
       )}
 
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-3" onSubmit={handleSubmit}>
         <div>
           <label
             htmlFor="email"
@@ -163,7 +160,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }) {
         </div>
       </form>
 
-      <div className="mt-6">
+      <div className="mt-4">
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-300"></div>
@@ -175,7 +172,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }) {
           </div>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-3">
           <button
             onClick={handleGoogleSignup}
             disabled={isLoading}
@@ -195,6 +192,34 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }) {
           </button>
         </div>
       </div>
+
+      <p className="mt-4 text-center text-sm text-gray-600">
+        Already have an account?{" "}
+        <button
+          onClick={onSwitchToLogin}
+          className="font-medium text-blue-600 hover:text-blue-500"
+        >
+          Sign in
+        </button>
+      </p>
+
+      {/* Compact trust indicator */}
+      <p className="mt-3 text-center text-xs text-gray-500 flex items-center justify-center">
+        <svg
+          className="h-3 w-3 text-gray-400 mr-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+          />
+        </svg>
+        Your data is secure and never shared
+      </p>
     </div>
   );
 }

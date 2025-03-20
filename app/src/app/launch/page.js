@@ -11,6 +11,7 @@ import Link from "next/link";
 import { FeedbackButton } from "@/components/FeedbackButton";
 import { AuthModal } from "@/components/auth";
 import { SignupForm } from "@/components/auth";
+import { TransitionLoader } from "@/components/loading";
 
 export default function LaunchPage() {
   const router = useRouter();
@@ -22,8 +23,9 @@ export default function LaunchPage() {
   const [customization, setCustomization] = useState(null);
   const [error, setError] = useState(null);
 
-  // State for controlling the signup modal
+  // State for controlling the signup modal and loading transition
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+  const [showTransition, setShowTransition] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -86,8 +88,8 @@ export default function LaunchPage() {
       // Set email sent state
       setEmailSent(true);
 
-      // Show signup modal after successful submission
-      setIsSignupModalOpen(true);
+      // Show transition loader before opening signup modal
+      setShowTransition(true);
     } catch (error) {
       console.error("Launch error:", error);
       setError(error.message);
@@ -96,9 +98,15 @@ export default function LaunchPage() {
     }
   };
 
-  // For testing - this skips the email submission
-  const handleTestSignupModal = () => {
+  // Handle transition completion
+  const handleTransitionComplete = () => {
+    setShowTransition(false);
     setIsSignupModalOpen(true);
+  };
+
+  // For testing - this shows the transition followed by signup
+  const handleTestSignupFlow = () => {
+    setShowTransition(true);
   };
 
   // Handle signup success
@@ -192,7 +200,7 @@ export default function LaunchPage() {
                     chatbots in one place.
                   </p>
                   <button
-                    onClick={handleTestSignupModal}
+                    onClick={handleTestSignupFlow}
                     className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
                   >
                     Create Account
@@ -269,15 +277,24 @@ export default function LaunchPage() {
         </div>
       </main>
 
-      {/* For testing: Button to directly show signup modal */}
+      {/* For testing: Button to directly show signup flow */}
       <div className="fixed bottom-4 right-4">
         <button
-          onClick={handleTestSignupModal}
+          onClick={handleTestSignupFlow}
           className="py-2 px-4 bg-gray-800 text-white rounded-md hover:bg-gray-700"
         >
-          Test Signup Modal
+          Test Signup Flow
         </button>
       </div>
+
+      {/* Transition Loader */}
+      {showTransition && (
+        <TransitionLoader
+          duration={4000}
+          message="Launching your chatbot..."
+          onComplete={handleTransitionComplete}
+        />
+      )}
 
       {/* Signup Modal */}
       <AuthModal isOpen={isSignupModalOpen} onClose={closeSignupModal}>
