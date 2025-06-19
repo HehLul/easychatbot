@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { createClient } from "@supabase/supabase-js";
+import { validateSession, userOwnsChatbot } from "@/lib/auth.server";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -27,7 +28,7 @@ export async function POST(request) {
     // Get current token usage
     const { data: chatbot, error: fetchError } = await supabase
       .from("chatbots")
-      .select("id, token_usage, status")
+      .select("id, token_usage, status, user_id")
       .eq("subdomain", subdomain)
       .single();
 
@@ -36,9 +37,31 @@ export async function POST(request) {
     }
 
     // Check if chatbot is active
-    if (chatbot.status !== 'active') {
-      return NextResponse.json({ error: "Chatbot is not active" }, { status: 403 });
+    if (chatbot.status !== "active") {
+      return NextResponse.json(
+        { error: "Chatbot is not active" },
+        { status: 403 }
+      );
     }
+
+    // For specific actions that require authentication (e.g., admin actions),
+    // you can check for authenticated user and ownership
+    const isAdminAction = request.headers.get("x-admin-action") === "true";
+
+    if (isAdminAction) {
+      // Validate session if admin action
+      const sessionData = await validateSession(request);
+
+      // Check if user is authenticated and owns the chatbot
+      if (
+        !sessionData ||
+        !(await userOwnsChatbot(sessionData.user.id, chatbot.id))
+      ) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+    }
+
+    // For regular chat interactions, continue without requiring auth
 
     // Estimate tokens for incoming messages
     const incomingTokens = messages.reduce((total, message) => {
@@ -71,7 +94,7 @@ export async function POST(request) {
     });
 
     const responseMessage = completion.choices[0].message.content;
-    
+
     // Get actual token usage from OpenAI response
     const totalTokensUsed = completion.usage.total_tokens;
 
