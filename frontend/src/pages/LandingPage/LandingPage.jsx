@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../../../public/logo.png";
 import {
   Menu,
   X,
@@ -23,6 +24,7 @@ import {
   Mail,
 } from "lucide-react";
 import "./LandingPage.css";
+// import styles from "./LandingPage.css";
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,7 +51,7 @@ const LandingPage = () => {
   const examplePrompts = [
     "Create a customer support chatbot for my e-commerce store",
     "Build a fitness coaching AI that can sell workout plans",
-    "Make a recipe chatbot that monetizes through affiliate links",
+    "Make a baking recipe chatbot",
   ];
 
   const navigation = [
@@ -234,9 +236,7 @@ const LandingPage = () => {
           <div className="header-content">
             {/* Logo */}
             <div className="logo">
-              <div className="logo-icon">
-                <span>DS</span>
-              </div>
+              <img src={logo}></img>
               <span className="logo-text">DeepSheep</span>
             </div>
 
@@ -412,9 +412,9 @@ const LandingPage = () => {
                 <button className="btn-cta">
                   Start Building Free - No Credit Card Required
                 </button>
-                <p className="cta-note">
+                {/* <p className="cta-note">
                   Join 10,000+ creators already making money with AI chatbots
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -589,9 +589,7 @@ const LandingPage = () => {
       <section id="testimonials" className="testimonials">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">
-              Real Success Stories from Real Users
-            </h2>
+            <h2 className="section-title">Beta Success Stories</h2>
             <p className="section-subtitle">
               See how creators and businesses are using DeepSheep to build
               profitable AI chatbots and generate substantial revenue streams.
