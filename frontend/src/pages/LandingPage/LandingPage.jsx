@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../public/logo.png";
 import {
   Menu,
@@ -32,20 +33,12 @@ const LandingPage = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [demoResponse, setDemoResponse] = useState("");
 
+  //navigate to auth page when input is sent
+  const navigate = useNavigate();
   const handlePromptSubmit = async (e) => {
     e.preventDefault();
     if (!prompt.trim()) return;
-
-    setIsTyping(true);
-    setDemoResponse("");
-
-    // Simulate AI response
-    setTimeout(() => {
-      setDemoResponse(
-        `Great idea! I can help you with "${prompt}". Your AI chatbot would be perfect for this use case. Ready to build and monetize it in minutes?`
-      );
-      setIsTyping(false);
-    }, 2000);
+    navigate("/auth");
   };
 
   const examplePrompts = [
