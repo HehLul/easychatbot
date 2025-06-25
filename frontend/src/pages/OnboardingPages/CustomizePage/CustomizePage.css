@@ -1,11 +1,11 @@
 .customize-page {
   min-height: 100vh;
   background: var(--bg-secondary);
-  padding: var(--space-8) 0;
+  padding: var(--space-4) 0;
 }
 
 .customize-content {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 

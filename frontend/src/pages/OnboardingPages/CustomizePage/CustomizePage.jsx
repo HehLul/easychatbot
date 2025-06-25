@@ -97,6 +97,10 @@ function CustomizePage() {
           </div>
 
           <div className="customize-layout">
+            {/* Live Preview */}
+            <div className="preview-section">
+              <ChatPreview customization={customization} />
+            </div>
             {/* Customization Form */}
             <div className="customize-form">
               {/* Basic Information */}
@@ -379,11 +383,6 @@ function CustomizePage() {
                   Your customization is automatically saved
                 </p>
               </div>
-            </div>
-
-            {/* Live Preview */}
-            <div className="preview-section">
-              <ChatPreview customization={customization} />
             </div>
           </div>
         </div>
