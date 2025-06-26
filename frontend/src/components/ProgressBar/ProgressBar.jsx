@@ -1,11 +1,54 @@
 import React from "react";
 import "./ProgressBar.css";
 
-function ProgressBar({ currentStep, totalSteps, steps }) {
+function ProgressBar({
+  currentStep,
+  totalSteps,
+  steps,
+  onBack,
+  onNext,
+  onSkipToDashboard,
+  canGoBack = true,
+  canGoNext = true,
+  showSkip = true,
+  nextButtonText = "Next",
+  backButtonText = "Back",
+}) {
   const progressPercentage = (currentStep / totalSteps) * 100;
 
   return (
     <div className="progress-container">
+      {/* Navigation Buttons */}
+      <div className="progress-navigation">
+        <div className="nav-left">
+          {currentStep > 1 && canGoBack && (
+            <button className="nav-btn btn-back" onClick={onBack}>
+              ← {backButtonText}
+            </button>
+          )}
+        </div>
+
+        <div className="nav-center">
+          {showSkip && (
+            <button className="nav-btn btn-skip" onClick={onSkipToDashboard}>
+              Skip to Dashboard
+            </button>
+          )}
+        </div>
+
+        <div className="nav-right">
+          {currentStep < totalSteps && canGoNext && (
+            <button className="nav-btn btn-next" onClick={onNext}>
+              {nextButtonText} →
+            </button>
+          )}
+          {currentStep === totalSteps && (
+            <button className="nav-btn btn-finish" onClick={onSkipToDashboard}>
+              Go to Dashboard
+            </button>
+          )}
+        </div>
+      </div>
       <div className="progress-header">
         <span className="progress-text">
           Step {currentStep} of {totalSteps}

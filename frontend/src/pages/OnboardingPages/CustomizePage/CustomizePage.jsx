@@ -86,7 +86,16 @@ function CustomizePage() {
   return (
     <div className="customize-page">
       <div className="container">
-        <ProgressBar currentStep={2} totalSteps={3} steps={steps} />
+        {/* <ProgressBar currentStep={2} totalSteps={3} steps={steps} /> */}
+        <ProgressBar
+          currentStep={2}
+          totalSteps={3}
+          steps={["Train", "Customize", "Deploy"]}
+          onBack={() => navigate("/train")}
+          onNext={() => navigate("/launch")}
+          onSkipToDashboard={() => navigate("/dashboard")}
+          nextButtonText="Next Step: Deploy"
+        />
 
         <div className="customize-content">
           <div className="section-header text-center">

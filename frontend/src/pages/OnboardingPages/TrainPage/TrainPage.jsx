@@ -81,7 +81,16 @@ function TrainPage() {
   return (
     <div className="train-page">
       <div className="container">
-        <ProgressBar currentStep={1} totalSteps={3} steps={steps} />
+        {/* <ProgressBar currentStep={1} totalSteps={3} steps={steps} /> */}
+        <ProgressBar
+          currentStep={1}
+          totalSteps={3}
+          steps={["Train", "Customize", "Deploy"]}
+          onBack={() => navigate("/")}
+          onNext={() => navigate("/customize")}
+          onSkipToDashboard={() => navigate("/dashboard")}
+          nextButtonText="Next Step: Customize"
+        />
 
         <div className="train-content">
           <div className="section-header text-center">

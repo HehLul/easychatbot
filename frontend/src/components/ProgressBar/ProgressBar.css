@@ -43,6 +43,7 @@
   display: flex;
   justify-content: space-between;
   gap: var(--space-4);
+  margin-bottom: var(--space-8); /* Added margin for button spacing */
 }
 
 .progress-step {
@@ -97,6 +98,162 @@
   font-weight: 600;
 }
 
+/* NEW CSS FOR NAVIGATION BUTTONS */
+.progress-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  /* margin-top: var(--space-6); */
+  margin-bottom: var(--space-2);
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left {
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.nav-center {
+  /* justify-content: center; */
+}
+
+.nav-right {
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.nav-btn {
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  outline: none;
+  padding: var(--space-3) var(--space-4);
+}
+
+.nav-btn:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Button Variants */
+.btn-back {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--color-gray-300);
+}
+
+.btn-back:hover:not(:disabled) {
+  background: var(--color-gray-200);
+  color: var(--text-primary);
+  border-color: var(--color-gray-400);
+}
+
+.btn-skip {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  text-decoration: underline;
+  padding: var(--space-2) var(--space-3);
+}
+
+.btn-skip:hover:not(:disabled) {
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  text-decoration: none;
+}
+
+.btn-next {
+  background: linear-gradient(
+    to right,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  color: white;
+  border: 1px solid transparent;
+}
+
+.btn-next:hover:not(:disabled) {
+  background: linear-gradient(
+    to right,
+    var(--color-primary-hover),
+    var(--color-secondary-hover)
+  );
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-finish {
+  background: var(--color-success);
+  color: white;
+  border: 1px solid transparent;
+}
+
+.btn-finish:hover:not(:disabled) {
+  background: #047857;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .progress-steps {
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .progress-step {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .step-number {
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+  }
+
+  .progress-navigation {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .nav-left,
+  .nav-center,
+  .nav-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-skip {
+    order: -1;
+  }
+}
 @media (max-width: 768px) {
   .progress-steps {
     flex-direction: column;
