@@ -86,77 +86,115 @@ function ChatBotPreview({ customization }) {
         <span>Live Preview</span>
       </div>
 
-      <div className="chat-container">
-        {/* Chat Header */}
-        <div className="chat-header">
-          <div className="chat-avatar">
-            {customization.avatar ? (
-              <img src={customization.avatar} alt="Bot avatar" />
-            ) : (
-              <div className="default-avatar">🤖</div>
+      <div className="landing-container">
+        {/* Navigation Bar */}
+        <nav className="chat-navbar">
+          <div className="navbar-content">
+            <div className="navbar-brand">
+              <div className="brand-avatar">
+                {customization.avatar ? (
+                  <img src={customization.avatar} alt="Bot avatar" />
+                ) : (
+                  <div className="default-brand-avatar">🤖</div>
+                )}
+              </div>
+              <span className="brand-name">
+                {customization.title || "My Chatbot"}
+              </span>
+            </div>
+            <div className="navbar-actions">
+              <button className="nav-button">Get Pro</button>
+            </div>
+          </div>
+        </nav>
+
+        {/* Hero Section */}
+        <section className="hero-section">
+          <div className="hero-content">
+            <h1>{customization.title || "The Best Chatbot"}</h1>
+            <h3>
+              {customization.description ||
+                "Knowledge merged from 10,000+ sources"}
+            </h3>
+            <h1 className="hero-title">
+              {customization.subtitle || "What can I help with?"}
+            </h1>
+            {customization.description && (
+              <p className="hero-description">{customization.description}</p>
             )}
           </div>
-          <div className="chat-info">
-            <h3 className="chat-title">
-              {customization.title || "My Chatbot"}
-            </h3>
-            <p className="chat-subtitle">
-              {customization.subtitle || "How can I help you today?"}
-            </p>
-          </div>
-        </div>
+        </section>
 
-        {/* Chat Messages */}
-        <div className="chat-messages">
-          {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`message ${
-                message.sender === "user" ? "user-message" : "bot-message"
-              }`}
-            >
-              <div className="message-bubble">{message.text}</div>
-            </div>
-          ))}
-
-          {/* Suggested Questions */}
-          {messages.length <= 1 &&
-            customization.suggestedQuestions?.length > 0 && (
-              <div className="suggested-questions">
-                <p className="suggestions-label">Suggested questions:</p>
-                <div className="suggestions-list">
-                  {customization.suggestedQuestions.map((question, index) => (
-                    <button
-                      key={index}
-                      className="suggestion-button"
-                      onClick={() => handleSuggestedQuestion(question)}
-                    >
-                      {question}
-                    </button>
-                  ))}
+        {/* Chat Interface */}
+        <section className="chat-section">
+          <div className="chat-container">
+            <div className="chat-input-area">
+              <div className="chat-input-wrapper">
+                <input
+                  type="text"
+                  className="chat-input"
+                  placeholder={customization.inputPlaceholder || "Ask anything"}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                />
+                <div className="input-actions">
+                  <button className="action-button">🔍</button>
+                  <button className="action-button">💡</button>
+                  <button className="send-button" onClick={handleSendMessage}>
+                    ↗
+                  </button>
                 </div>
               </div>
-            )}
-        </div>
 
-        {/* Chat Input */}
-        <div className="chat-input-container">
-          <div className="chat-input-wrapper">
-            <input
-              type="text"
-              className="chat-input"
-              placeholder={
-                customization.inputPlaceholder || "Type your message..."
-              }
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-            />
-            <button className="send-button" onClick={handleSendMessage}>
-              ➤
-            </button>
+              {/* Suggested Questions */}
+              {messages.length === 0 &&
+                customization.suggestedQuestions?.length > 0 && (
+                  <div className="suggested-questions">
+                    <p className="suggestions-label">Try:</p>
+                    <div className="suggestions-grid">
+                      {customization.suggestedQuestions.map(
+                        (question, index) => (
+                          <button
+                            key={index}
+                            className="suggestion-pill"
+                            onClick={() => handleSuggestedQuestion(question)}
+                          >
+                            {question}
+                          </button>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
+            </div>
+
+            {/* Chat Messages */}
+            {messages.length > 0 && (
+              <div className="chat-messages">
+                {messages.map((message) => (
+                  <div
+                    key={message.id}
+                    className={`message ${
+                      message.sender === "user" ? "user-message" : "bot-message"
+                    }`}
+                  >
+                    {message.sender === "bot" && (
+                      <div className="message-avatar">
+                        {customization.avatar ? (
+                          <img src={customization.avatar} alt="Bot" />
+                        ) : (
+                          <div className="default-message-avatar">🤖</div>
+                        )}
+                      </div>
+                    )}
+                    <div className="message-bubble">{message.text}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );

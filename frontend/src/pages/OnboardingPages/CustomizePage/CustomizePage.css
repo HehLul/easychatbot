@@ -4,8 +4,12 @@
   padding: var(--space-4) 0;
 }
 
+.customize-page > .container {
+  max-width: 2000px;
+}
+
 .customize-content {
-  max-width: 1600px;
+  max-width: 1800px;
   margin: 0 auto;
 }
 

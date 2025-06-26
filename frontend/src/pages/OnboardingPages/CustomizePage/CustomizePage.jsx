@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
-import ChatPreview from "../../../components/ChatBotPreview/ChatBotPreview";
+import ChatBotPreview from "../../../components/ChatBotPreview/ChatBotPreview";
 import "./CustomizePage.css";
 
 function CustomizePage() {
@@ -99,7 +99,7 @@ function CustomizePage() {
           <div className="customize-layout">
             {/* Live Preview */}
             <div className="preview-section">
-              <ChatPreview customization={customization} />
+              <ChatBotPreview customization={customization} />
             </div>
             {/* Customization Form */}
             <div className="customize-form">
