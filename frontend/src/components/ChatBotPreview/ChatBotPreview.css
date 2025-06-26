@@ -4,7 +4,7 @@
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--color-gray-200);
   overflow: hidden;
-  height: 700px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   font-size: var(--font-size, 16px);
@@ -53,7 +53,8 @@
   height: 2rem;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--primary-color, var(--color-primary));
+  /* background: var(--primary-color, var(--color-primary)); */
+  background: var(--color-gray-200);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,6 +102,7 @@
   padding: var(--space-8) var(--space-4);
   text-align: center;
   background: var(--background-color, #f9fafb);
+  min-height: 350px;
 }
 
 .hero-content {
@@ -124,6 +126,7 @@
 
 /* Chat Section */
 .chat-section {
+  margin-bottom: auto;
   background: white;
   border-top: 1px solid var(--color-gray-200);
   padding: var(--space-4);
@@ -306,6 +309,24 @@
   color: var(--text-primary);
   border: 1px solid var(--color-gray-200);
   border-bottom-left-radius: var(--radius-sm);
+}
+
+.chat-preview > .container {
+  display: flex;
+  padding: 0;
+}
+
+.chat-preview .side-nav {
+  min-width: 30px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-right: 1px solid gray;
+}
+
+.side-nav:last-child {
+  margin-top: 50px;
 }
 
 /* Responsive Design */

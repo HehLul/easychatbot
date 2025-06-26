@@ -9,16 +9,16 @@ function CustomizePage() {
   const [activeTab, setActiveTab] = useState("setup");
   const [customization, setCustomization] = useState({
     // Basic Information
-    title: "My Chatbot",
+    title: "Best Chatbot",
     subtitle: "How can I help you today?",
-    description: "",
+    description: "We've trained this chatbot with 10,000+ sources",
     inputPlaceholder: "Type your message...",
 
     // Visual Styling
-    primaryColor: "#2563eb",
+    primaryColor: "#000",
     secondaryColor: "#7c3aed",
-    backgroundColor: "#f9fafb",
-    userBubbleColor: "#2563eb",
+    backgroundColor: "fff",
+    userBubbleColor: "#000",
     botBubbleColor: "#ffffff",
     fontSize: "medium",
     avatar: null,
