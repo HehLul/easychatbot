@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
+import PricingPopup from "../../../components/PricingPopup/PricingPopup";
 import "./MonetizePage.css";
 
 function MonetizePage() {
   const navigate = useNavigate();
   const [isPaidUser, setIsPaidUser] = useState(false); // Start as false for new users
+  const [showPricing, setShowPricing] = useState(false);
 
   const steps = ["Train", "Customize", "Monetize", "Launch"];
 
   const handleUpgrade = () => {
     // Simulate upgrade process
     setIsPaidUser(true);
+  };
+  const handlePlanSelect = (plan) => {
+    console.log("Selected plan:", plan);
+    // Handle plan selection logic
+    setShowPricing(true);
   };
 
   const handleContinue = () => {
@@ -71,6 +78,12 @@ function MonetizePage() {
 
   return (
     <div className="monetize-page">
+      {/* <button onClick={handlePlanSelect}>Upgrade</button>
+      <PricingPopup
+        isOpen={showPricing}
+        onClose={() => setShowPricing(false)}
+        onSelectPlan={handlePlanSelect}
+      /> */}
       <div className="container">
         <ProgressBar
           currentStep={3}
