@@ -18,13 +18,7 @@ function MonetizePage() {
       name: "Free",
       price: "$0",
       period: "forever",
-      features: [
-        "1 chatbot",
-        "10 chats/day per user",
-        '"Powered by DeepSheep" branding',
-        "Basic customization",
-        "No monetization",
-      ],
+      features: ["1 chatbot"],
       popular: false,
     },
     {
@@ -32,14 +26,7 @@ function MonetizePage() {
       name: "Premium",
       price: "$19",
       period: "per month",
-      features: [
-        "3 chatbots",
-        "100 chats/day per user",
-        "Remove branding",
-        "Full customization",
-        "Can monetize chatbots",
-        "Basic analytics",
-      ],
+      features: ["3 chatbots"],
       popular: true,
     },
     {
@@ -47,14 +34,7 @@ function MonetizePage() {
       name: "Pro",
       price: "$49",
       period: "per month",
-      features: [
-        "Unlimited chatbots",
-        "500 chats/day per user",
-        "Advanced features",
-        "White-label options",
-        "Advanced analytics",
-        "Priority support",
-      ],
+      features: ["Unlimited chatbots"],
       popular: false,
     },
   ];
@@ -170,14 +150,14 @@ function MonetizePage() {
 
         <div className="monetize-content">
           <div className="section-header text-center">
-            <h1>Choose Your Plan</h1>
+            <h3>Choose Your Plan</h3>
             <p className="text-secondary">
               Select the plan that best fits your chatbot needs
             </p>
           </div>
 
           {/* Plan Selection */}
-          <div className="plans-section">
+          {/* <div className="plans-section">
             <div className="plans-grid">
               {plans.map((plan) => (
                 <div
@@ -222,31 +202,35 @@ function MonetizePage() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Monetization Preview */}
           <div className="monetization-preview">
             <div className="preview-header">
-              <h2>🚀 Unlock Monetization Potential</h2>
+              <h2>🚀 Monetize Your Chatbot</h2>
               <p className="text-secondary">
-                See what you could earn by upgrading to Premium or Pro
+                Create multiple pricing tiers and turn your AI chatbot into a
+                revenue-generating business
               </p>
+
+              {/* Revenue Potential Banner */}
+              <div className="revenue-banner">
+                <div className="revenue-stat">
+                  <span className="stat-number">$2,500</span>
+                  <span className="stat-label">Average monthly revenue</span>
+                </div>
+                <div className="revenue-stat">
+                  <span className="stat-number">73%</span>
+                  <span className="stat-label">Users upgrade to paid</span>
+                </div>
+                <div className="revenue-stat">
+                  <span className="stat-number">30 days</span>
+                  <span className="stat-label">Average payback period</span>
+                </div>
+              </div>
             </div>
 
             <div className="preview-content">
-              <div className="earning-examples">
-                <div className="example-card">
-                  <h4>Example Revenue</h4>
-                  <p className="text-sm text-secondary mb-3">
-                    Set your chatbot at $9/month with 50 daily active users
-                  </p>
-                  <div className="revenue-calc">
-                    <span className="revenue-amount">$450</span>
-                    <span className="revenue-period">/month potential</span>
-                  </div>
-                </div>
-              </div>
-
               <div
                 className={`monetization-controls ${
                   selectedPlan === "free" ? "disabled" : ""
@@ -255,38 +239,272 @@ function MonetizePage() {
                 <div className="controls-overlay">
                   {selectedPlan === "free" && (
                     <div className="upgrade-prompt">
-                      <p className="font-semibold">
-                        Upgrade to unlock monetization
+                      <div className="upgrade-icon">💰</div>
+                      <h3>Start Making Money Today</h3>
+                      <p className="upgrade-description">
+                        Set up custom pricing plans, control usage limits, and
+                        start earning from your chatbot immediately
                       </p>
+                      <div className="upgrade-benefits">
+                        <div className="benefit-item">
+                          ✓ Unlimited pricing tiers
+                        </div>
+                        <div className="benefit-item">
+                          ✓ Monthly & annual billing
+                        </div>
+                        <div className="benefit-item">
+                          ✓ Token-based usage control
+                        </div>
+                        <div className="benefit-item">
+                          ✓ Real-time revenue tracking
+                        </div>
+                      </div>
                       <button
-                        className="btn-primary btn-sm"
+                        className="btn-primary btn-lg upgrade-btn"
                         onClick={() => handlePlanSelect("premium")}
                       >
-                        Choose Premium
+                        Upgrade to Premium - Start Monetizing
                       </button>
+                      <p className="upgrade-note">
+                        30-day money-back guarantee
+                      </p>
                     </div>
                   )}
                 </div>
 
-                <h4>Monetization Settings</h4>
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label className="field-label">Monthly Price</label>
-                    <input
-                      type="number"
-                      className="field-input"
-                      placeholder="9.99"
-                      disabled={selectedPlan === "free"}
-                    />
+                {/* Pricing Plans Configuration */}
+                <div className="pricing-plans-config">
+                  <h3>Configure Your Pricing Plans</h3>
+                  <p className="text-secondary text-sm mb-6">
+                    Create up to 3 pricing tiers for your chatbot users
+                  </p>
+
+                  {/* Free Plan */}
+                  <div className="plan-config-card">
+                    <div className="plan-config-header">
+                      <h4>Free Plan</h4>
+                      <span className="plan-badge free">Always Available</span>
+                    </div>
+                    <div className="config-grid">
+                      <div className="config-group">
+                        <label className="config-label">Tokens per month</label>
+                        <input
+                          type="number"
+                          className="config-input"
+                          defaultValue="1000"
+                          disabled={selectedPlan === "free"}
+                        />
+                        <span className="config-help">≈ 50 messages</span>
+                      </div>
+                      <div className="config-group">
+                        <label className="config-label">
+                          Features included
+                        </label>
+                        <div className="feature-toggles">
+                          <label className="toggle-item">
+                            <input
+                              type="checkbox"
+                              defaultChecked
+                              disabled={selectedPlan === "free"}
+                            />
+                            <span>Basic chat</span>
+                          </label>
+                          <label className="toggle-item">
+                            <input
+                              type="checkbox"
+                              disabled={selectedPlan === "free"}
+                            />
+                            <span>File uploads</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label className="field-label">Daily Message Limit</label>
-                    <input
-                      type="number"
-                      className="field-input"
-                      placeholder="100"
-                      disabled={selectedPlan === "free"}
-                    />
+
+                  {/* Premium Plan */}
+                  <div className="plan-config-card">
+                    <div className="plan-config-header">
+                      <h4>Premium Plan</h4>
+                      <span className="plan-badge premium">Most Popular</span>
+                    </div>
+                    <div className="config-grid">
+                      <div className="config-row">
+                        <div className="config-group">
+                          <label className="config-label">Monthly price</label>
+                          <div className="price-input">
+                            <span className="currency">$</span>
+                            <input
+                              type="number"
+                              className="config-input"
+                              placeholder="19.99"
+                              disabled={selectedPlan === "free"}
+                            />
+                          </div>
+                        </div>
+                        <div className="config-group">
+                          <label className="config-label">
+                            Annual price (optional)
+                          </label>
+                          <div className="price-input">
+                            <span className="currency">$</span>
+                            <input
+                              type="number"
+                              className="config-input"
+                              placeholder="199.99"
+                              disabled={selectedPlan === "free"}
+                            />
+                            <span className="config-help">17% discount</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="config-row">
+                        <div className="config-group">
+                          <label className="config-label">
+                            Tokens per month
+                          </label>
+                          <input
+                            type="number"
+                            className="config-input"
+                            defaultValue="10000"
+                            disabled={selectedPlan === "free"}
+                          />
+                          <span className="config-help">≈ 500 messages</span>
+                        </div>
+                        <div className="config-group">
+                          <label className="config-label">
+                            Priority support
+                          </label>
+                          <select
+                            className="config-input"
+                            disabled={selectedPlan === "free"}
+                          >
+                            <option>24h response time</option>
+                            <option>12h response time</option>
+                            <option>4h response time</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Pro Plan */}
+                  <div className="plan-config-card">
+                    <div className="plan-config-header">
+                      <h4>Pro Plan</h4>
+                      <span className="plan-badge pro">Enterprise</span>
+                    </div>
+                    <div className="config-grid">
+                      <div className="config-row">
+                        <div className="config-group">
+                          <label className="config-label">Monthly price</label>
+                          <div className="price-input">
+                            <span className="currency">$</span>
+                            <input
+                              type="number"
+                              className="config-input"
+                              placeholder="49.99"
+                              disabled={selectedPlan === "free"}
+                            />
+                          </div>
+                        </div>
+                        <div className="config-group">
+                          <label className="config-label">
+                            Annual price (optional)
+                          </label>
+                          <div className="price-input">
+                            <span className="currency">$</span>
+                            <input
+                              type="number"
+                              className="config-input"
+                              placeholder="499.99"
+                              disabled={selectedPlan === "free"}
+                            />
+                            <span className="config-help">17% discount</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="config-row">
+                        <div className="config-group">
+                          <label className="config-label">
+                            Tokens per month
+                          </label>
+                          <input
+                            type="number"
+                            className="config-input"
+                            defaultValue="50000"
+                            disabled={selectedPlan === "free"}
+                          />
+                          <span className="config-help">≈ 2,500 messages</span>
+                        </div>
+                        <div className="config-group">
+                          <label className="config-label">
+                            Advanced features
+                          </label>
+                          <div className="feature-toggles">
+                            <label className="toggle-item">
+                              <input
+                                type="checkbox"
+                                defaultChecked
+                                disabled={selectedPlan === "free"}
+                              />
+                              <span>API access</span>
+                            </label>
+                            <label className="toggle-item">
+                              <input
+                                type="checkbox"
+                                defaultChecked
+                                disabled={selectedPlan === "free"}
+                              />
+                              <span>White-label</span>
+                            </label>
+                            <label className="toggle-item">
+                              <input
+                                type="checkbox"
+                                disabled={selectedPlan === "free"}
+                              />
+                              <span>Custom integrations</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Revenue Projection */}
+                  <div className="revenue-projection">
+                    <h4>Revenue Projection</h4>
+                    <p className="text-secondary text-sm mb-4">
+                      Based on your pricing and industry averages
+                    </p>
+                    <div className="projection-grid">
+                      <div className="projection-item">
+                        <span className="projection-label">
+                          Expected monthly users
+                        </span>
+                        <input
+                          type="number"
+                          className="projection-input"
+                          defaultValue="100"
+                          disabled={selectedPlan === "free"}
+                        />
+                      </div>
+                      <div className="projection-item">
+                        <span className="projection-label">
+                          Conversion rate
+                        </span>
+                        <span className="projection-value">
+                          15% (industry avg)
+                        </span>
+                      </div>
+                      <div className="projection-item">
+                        <span className="projection-label">
+                          Estimated monthly revenue
+                        </span>
+                        <span className="projection-value revenue-highlight">
+                          $450 - $890
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
