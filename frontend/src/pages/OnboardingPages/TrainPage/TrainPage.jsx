@@ -84,8 +84,8 @@ function TrainPage() {
         {/* <ProgressBar currentStep={1} totalSteps={3} steps={steps} /> */}
         <ProgressBar
           currentStep={1}
-          totalSteps={3}
-          steps={["Train", "Customize", "Deploy"]}
+          totalSteps={4}
+          steps={["Train", "Customize", "Monetize", "Deploy"]}
           onBack={() => navigate("/")}
           onNext={() => navigate("/customize")}
           onSkipToDashboard={() => navigate("/dashboard")}

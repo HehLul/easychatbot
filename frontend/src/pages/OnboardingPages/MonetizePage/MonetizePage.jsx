@@ -21,18 +21,16 @@ function MonetizePage() {
     setShowPricing(true);
   };
 
+  //progressbar functions
   const handleContinue = () => {
     navigate("/launch");
   };
-
   const handleBack = () => {
     navigate("/customize");
   };
-
   const handleSkipToDashboard = () => {
     navigate("/dashboard");
   };
-
   if (isPaidUser) {
     return (
       <div className="monetize-page">
@@ -106,7 +104,9 @@ function MonetizePage() {
                   answers, and leave. You're providing value but missing out on
                   turning those interactions into income.
                 </p>
-                <a href="/launch">Skip</a>
+                {/* <a className="skip-link" href="/launch">
+                  Or Skip
+                </a> */}
               </div>
 
               {/* Before/After Comparison */}

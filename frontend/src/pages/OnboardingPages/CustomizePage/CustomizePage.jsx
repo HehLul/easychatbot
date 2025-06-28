@@ -89,12 +89,12 @@ function CustomizePage() {
         {/* <ProgressBar currentStep={2} totalSteps={3} steps={steps} /> */}
         <ProgressBar
           currentStep={2}
-          totalSteps={3}
-          steps={["Train", "Customize", "Deploy"]}
+          totalSteps={4}
+          steps={["Train", "Customize", "Monetize", "Deploy"]}
           onBack={() => navigate("/train")}
-          onNext={() => navigate("/launch")}
+          onNext={() => navigate("/monetize")}
           onSkipToDashboard={() => navigate("/dashboard")}
-          nextButtonText="Next Step: Deploy"
+          nextButtonText="Next Step: Monetize"
         />
 
         <div className="customize-content">
